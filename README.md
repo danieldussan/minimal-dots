@@ -17,7 +17,7 @@ Este repositorio contiene mis archivos de configuración personal (dotfiles) y u
 Para configurar todo automáticamente en un usuario nuevo o existente, ejecuta el siguiente comando:
 
 ```bash
-curl -fsSL [https://raw.githubusercontent.com/danieldussan/minimal-dots/main/setup.sh](https://raw.githubusercontent.com/danieldussan/minimal-dots/main/setup.sh) | bash
+curl -fsSL https://raw.githubusercontent.com/danieldussan/minimal-dots/main/setup.sh | bash
 ```
 
 > **Nota:** El script detectará tu distribución, instalará las dependencias necesarias, configurará Oh My Zsh, descargará los temas/plugins y establecerá ZSH como tu shell por defecto.
