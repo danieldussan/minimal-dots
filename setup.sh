@@ -9,16 +9,28 @@ REPO_URL="https://raw.githubusercontent.com/danieldussan/minimal-dots/main"
 
 echo -e "${BLUE}Iniciando setup desde minimal-dots...${NC}"
 
-# 1. Limpieza total
-rm -rf "$HOME/.oh-my-zsh"
-rm -f "$HOME/.zshrc"
-rm -f "$HOME/.p10k.zsh"
+# 1. Limpieza
+echo -en "${BLUE}¿Deseas limpiar archivos anteriores? (s/n): ${NC}"
+read -r response
+
+if [[ "$response" =~ ^([sS][iI]|[sS]|[yY][eE][sS]|[yY])$ ]]; then
+  echo -e "${BLUE}Configurando entorno para ROOT...${NC}"
+  rm -rf "$HOME/.oh-my-zsh"
+  rm -f "$HOME/.zshrc"
+  rm -f "$HOME/.p10k.zsh"
+
+else
+  echo -e "${BLUE}Saltando limpieza de usuario.${NC}"
+fi
 
 # 2. Instalación de Dependencias
 if [ -f /etc/arch-release ]; then
-  sudo pacman -S --noconfirm --needed zsh git curl wget
+  sudo pacman -S --noconfirm --needed zsh git curl wget fzf fd bat eza
 elif [ -f /etc/debian_version ]; then
-  sudo apt-get update && sudo apt-get install -y zsh git curl wget
+  sudo apt-get update && sudo apt-get install -y zsh git curl wget fzf fd-find bat eza
+  # Crear link simbólico para fd en Debian/Ubuntu si no existe
+  mkdir -p ~/.local/bin
+  ln -sf $(which fdfind) ~/.local/bin/fd
 fi
 
 # 3. Instalación de Oh My Zsh (Desatendido)
@@ -31,7 +43,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}"
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}"/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}"/plugins/zsh-syntax-highlighting
 
-# 5. Descargar TUS archivos de configuración desde el nuevo REPO
+# 5. Descargar archivos de configuración
 echo -e "${BLUE}Descargando .zshrc y .p10k.zsh desde tu repo...${NC}"
 curl -fsSL "${REPO_URL}/.zshrc" -o ~/.zshrc
 curl -fsSL "${REPO_URL}/.p10k.zsh" -o ~/.p10k.zsh
