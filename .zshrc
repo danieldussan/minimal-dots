@@ -12,7 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 # ===== FZF Configuration =====
 # Initialize FZF
-source <(fzf --zsh)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # General file search (includes hidden files, excludes .git)
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git --exclude node_modules"
