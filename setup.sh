@@ -10,8 +10,7 @@ REPO_URL="https://raw.githubusercontent.com/danieldussan/minimal-dots/main"
 echo -e "${BLUE}Iniciando setup desde minimal-dots...${NC}"
 
 # 1. Limpieza
-echo -en "${BLUE}¿Deseas limpiar archivos anteriores? (s/n): ${NC}"
-read -r response
+read -rp "¿Deseas limpiar archivos anteriores? (s/n): " response < /dev/tty
 
 if [[ "$response" =~ ^([sS][iI]|[sS]|[yY][eE][sS]|[yY])$ ]]; then
   echo -e "${BLUE}Configurando entorno para ROOT...${NC}"
@@ -54,8 +53,7 @@ ZSH_PATH=$(which zsh)
 sudo chsh -s "$ZSH_PATH" "$USER"
 
 # 7. Preguntar si se quiere configurar para ROOT
-echo -en "${BLUE}¿Deseas configurar este entorno también para el usuario ROOT? (s/n): ${NC}"
-read -r response
+read -rp "¿Deseas configurar este entorno también para ROOT? (s/n): " response < /dev/tty
 
 if [[ "$response" =~ ^([sS][iI]|[sS]|[yY][eE][sS]|[yY])$ ]]; then
   echo -e "${BLUE}Configurando entorno para ROOT...${NC}"
