@@ -13,7 +13,7 @@ echo -e "${BLUE}Iniciando setup desde minimal-dots...${NC}"
 read -rp "¿Deseas limpiar archivos anteriores? (s/n): " response < /dev/tty
 
 if [[ "$response" =~ ^([sS][iI]|[sS]|[yY][eE][sS]|[yY])$ ]]; then
-  echo -e "${BLUE}Configurando entorno para ROOT...${NC}"
+  echo -e "${BLUE}Limpiando archivos anteriores...${NC}"
   rm -rf "$HOME/.oh-my-zsh"
   rm -f "$HOME/.zshrc"
   rm -f "$HOME/.p10k.zsh"
